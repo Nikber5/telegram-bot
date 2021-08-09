@@ -13,7 +13,9 @@ public class TelegramMarkupImpl implements TelegramMarkup {
     public ReplyKeyboardMarkup getMarkup() {
         ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
         KeyboardRow row = new KeyboardRow();
-        row.add(ButtonUtil.SEND_LINK);
+        for (String button : ButtonUtil.getAll()) {
+            row.add(button);
+        }
         row.add("Say hello");
         List<KeyboardRow> rows = new ArrayList<>();
         rows.add(row);

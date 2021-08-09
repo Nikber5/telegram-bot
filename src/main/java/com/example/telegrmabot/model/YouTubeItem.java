@@ -1,7 +1,6 @@
-package com.example.tests.model;
+package com.example.telegrmabot.model;
 
 public class YouTubeItem {
-
     private String url;
     private String title;
     private String thumbnail;

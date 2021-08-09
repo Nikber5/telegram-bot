@@ -1,5 +1,6 @@
 package com.example.telegrmabot.handler;
 
+import com.example.telegrmabot.message.YoutubeResponseMessage;
 import com.example.telegrmabot.strategy.MessageStrategy;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -12,13 +13,17 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @Component
 public class MyBot extends TelegramLongPollingBot {
     private final MessageStrategy messageStrategy;
+    private final YoutubeResponseMessage youtubeResponseMessage;
     @Value(value = "${telegram.username}")
     private String username;
     @Value(value = "${telegram.token}")
     private String token;
 
-    public MyBot(MessageStrategy messageStrategy) {
+    private String previousMessage;
+
+    public MyBot(MessageStrategy messageStrategy, YoutubeResponseMessage youtubeResponseMessage) {
         this.messageStrategy = messageStrategy;
+        this.youtubeResponseMessage = youtubeResponseMessage;
     }
 
     @Override
@@ -35,12 +40,18 @@ public class MyBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
 
-        SendMessage response = messageStrategy.getMessage(message);
-        
+        SendMessage response;
+        if (previousMessage != null && previousMessage.equals("Find video in youtube")) {
+            response = youtubeResponseMessage.createMessage(message);
+        } else {
+            response = messageStrategy.getMessage(message);
+        }
+
         try {
             execute(response);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
+        previousMessage = message.getText();
     }
 }
