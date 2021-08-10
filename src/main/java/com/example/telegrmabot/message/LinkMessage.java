@@ -7,7 +7,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
 @Component
-public class LinkMessage extends TelegramMessage {
+public class LinkMessage extends AbstractTelegramMessage {
     public LinkMessage(TelegramMarkup telegramMarkup) {
         super(telegramMarkup);
     }

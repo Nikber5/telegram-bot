@@ -7,7 +7,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
 @Component
-public class YoutubeRequestMessage extends TelegramMessage {
+public class YoutubeRequestMessage extends AbstractTelegramMessage {
     public YoutubeRequestMessage(TelegramMarkup telegramMarkup) {
         super(telegramMarkup);
     }

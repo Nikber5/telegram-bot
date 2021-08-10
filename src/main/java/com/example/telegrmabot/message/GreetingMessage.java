@@ -7,7 +7,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
 @Component
-public class GreetingMessage extends TelegramMessage {
+public class GreetingMessage extends AbstractTelegramMessage {
     public GreetingMessage(TelegramMarkup telegramMarkup) {
         super(telegramMarkup);
     }

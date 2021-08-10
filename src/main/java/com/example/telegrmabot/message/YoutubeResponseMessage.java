@@ -11,7 +11,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
 @Component
-public class YoutubeResponseMessage extends TelegramMessage {
+public class YoutubeResponseMessage extends AbstractTelegramMessage {
     private final YouTubeApiService youTubeApiService;
 
     public YoutubeResponseMessage(TelegramMarkup telegramMarkup, YouTubeApiService youTubeApiService) {
