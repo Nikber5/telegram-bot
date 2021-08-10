@@ -2,7 +2,7 @@ package com.example.telegrmabot.markup;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.example.telegrmabot.util.ButtonUtil;
+import com.example.telegrmabot.util.ButtonNamesUtil;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
@@ -13,7 +13,7 @@ public class TelegramMarkupImpl implements TelegramMarkup {
     public ReplyKeyboardMarkup getMarkup() {
         ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup();
         KeyboardRow row = new KeyboardRow();
-        for (String button : ButtonUtil.getAll()) {
+        for (String button : ButtonNamesUtil.getAllButtons()) {
             row.add(button);
         }
         List<KeyboardRow> rows = new ArrayList<>();

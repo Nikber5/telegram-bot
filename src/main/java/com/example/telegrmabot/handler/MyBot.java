@@ -39,7 +39,7 @@ public class MyBot extends TelegramLongPollingBot {
         try {
             execute(response);
         } catch (TelegramApiException e) {
-            throw new RuntimeException("Can't throw response message", e);
+            throw new RuntimeException("Can't send response message", e);
         }
     }
 }

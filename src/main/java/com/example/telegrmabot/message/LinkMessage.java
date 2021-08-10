@@ -1,6 +1,6 @@
 package com.example.telegrmabot.message;
 
-import com.example.telegrmabot.util.ButtonUtil;
+import com.example.telegrmabot.util.ButtonNamesUtil;
 import com.example.telegrmabot.markup.TelegramMarkup;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -23,6 +23,6 @@ public class LinkMessage extends TelegramMessage {
 
     @Override
     public String getText() {
-        return ButtonUtil.SEND_LINK;
+        return ButtonNamesUtil.SEND_LINK;
     }
 }

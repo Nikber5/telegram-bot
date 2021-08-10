@@ -1,10 +1,7 @@
 package com.example.telegrmabot.message;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import com.example.telegrmabot.markup.TelegramMarkup;
-import com.example.telegrmabot.model.YouTubeItem;
-import com.example.telegrmabot.util.ButtonUtil;
+import com.example.telegrmabot.util.ButtonNamesUtil;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -26,6 +23,6 @@ public class YoutubeRequestMessage extends TelegramMessage {
 
     @Override
     public String getText() {
-        return ButtonUtil.YOUTUBE;
+        return ButtonNamesUtil.YOUTUBE_REQUEST;
     }
 }
