@@ -12,7 +12,6 @@ public class ButtonUtil {
         List<String> buttons = new ArrayList<>();
         buttons.add(SEND_LINK);
         buttons.add(YOUTUBE);
-        buttons.add(DEFAULT);
         return buttons;
     }
 }
