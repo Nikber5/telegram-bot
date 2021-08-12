@@ -14,7 +14,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Component
 public class MyBot extends TelegramLongPollingBot {
-    Logger logger = LoggerFactory.getLogger(MyBot.class);
+    private final Logger logger = LoggerFactory.getLogger(MyBot.class);
 
     @Value(value = "${telegram.username}")
     private String username;

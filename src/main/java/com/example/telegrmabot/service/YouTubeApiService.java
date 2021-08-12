@@ -6,6 +6,8 @@ import com.example.telegrmabot.model.YouTubeItem;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,7 @@ public class YouTubeApiService {
     @Value("${youtube.maxvid}")
     private Long NUMBER_OF_VIDEOS_RETURNED;
 
+    private final Logger logger = LoggerFactory.getLogger(YouTubeApiService.class);
     private final YouTube youtube;
 
     public YouTubeApiService(YouTube youtube) {
@@ -58,10 +61,10 @@ public class YouTubeApiService {
                             r.getSnippet().getThumbnails().getDefault().getUrl(),
                             r.getSnippet().getDescription());
                     rvalue.add(item);
-                    System.out.println(item);
+                    logger.info(item.toString());
                 }
             } else {
-                System.out.println("No search results got from YouTube API");
+                logger.info("No search results got from YouTube API by request: " + searchQuery);
             }
             return rvalue;
         } catch (Exception e) {
