@@ -1,6 +1,8 @@
 package com.example.telegrmabot.handler;
 
 import com.example.telegrmabot.strategy.MessageStrategy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -11,6 +13,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Component
 public class MyBot extends TelegramLongPollingBot {
+    Logger logger = LoggerFactory.getLogger(MyBot.class);
+
     @Value(value = "${telegram.username}")
     private String username;
     @Value(value = "${telegram.token}")
@@ -35,6 +39,7 @@ public class MyBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
+        logger.info("Message: " + message + ", received");
         SendMessage response = messageStrategy.getMessage(message);
         try {
             execute(response);
