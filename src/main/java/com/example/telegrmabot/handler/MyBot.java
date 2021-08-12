@@ -1,5 +1,6 @@
 package com.example.telegrmabot.handler;
 
+import com.example.telegrmabot.service.UserService;
 import com.example.telegrmabot.strategy.MessageStrategy;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -17,9 +18,11 @@ public class MyBot extends TelegramLongPollingBot {
     private String token;
 
     private final MessageStrategy messageStrategy;
+    private final UserService userService;
 
-    public MyBot(MessageStrategy messageStrategy) {
+    public MyBot(MessageStrategy messageStrategy, UserService userService) {
         this.messageStrategy = messageStrategy;
+        this.userService = userService;
     }
 
     @Override
@@ -35,6 +38,7 @@ public class MyBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         Message message = update.getMessage();
+        userService.saveOrUpdate(message);
         SendMessage response = messageStrategy.getMessage(message);
         try {
             execute(response);
